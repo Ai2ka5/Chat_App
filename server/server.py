@@ -49,14 +49,14 @@ def client_communication(person):
     while True:  # wait for any messages from person
         msg = client.recv(BUFSIZ)
 
-        if msg == bytes("{quit}", "utf8"):  # if message is qut disconnect client
+        if msg == bytes("{quit}", "utf8"):  # if message is quit disconnect client
             client.close()
             persons.remove(person)
             broadcast(bytes(f"{name} has left the chat...", "utf8"), "")
             print(f"[DISCONNECTED] {name} disconnected")
             break
         else:  # otherwise send message to all other clients
-            broadcast(msg, name + ": ")
+            broadcast(msg, name+": ")
             print(f"{name}: ", msg.decode("utf8"))
 
 
